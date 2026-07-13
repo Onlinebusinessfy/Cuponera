@@ -1,11 +1,78 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Mis cupones
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-segment>
+    <ion-segment-button value="candies" content-id="candies">
+      <ion-label>Dulces</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="drinks" content-id="drinks">
+      <ion-label>Bebidas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="meats" content-id="meats">
+      <ion-label>Carnes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
+
+  <ion-segment-view>
+    <ion-segment-content id="candies">
+      <ion-grid>
+        <ion-row>
+          @for(coupon of coupons | filterCouponCategory: 'candies'; track coupon.idProduct){
+            <ion-col size="6">
+              <ion-card class="rounded">
+                <ion-img [src]="coupon.img"/>
+                <ion-card-header class="ion-text-center">
+                  <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
+                  <ion-card-title>{{ coupon.discount }}%</ion-card-title>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          }
+        </ion-row>
+      </ion-grid>
+    </ion-segment-content>
+
+    <ion-segment-content id="drinks">
+      <ion-grid>
+        <ion-row>
+          @for(coupon of coupons | filterCouponCategory: 'drinks'; track coupon.idProduct){
+            <ion-col size="6">
+              <ion-card class="rounded">
+                <ion-img [src]="coupon.img"/>
+                <ion-card-header class="ion-text-center">
+                  <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
+                  <ion-card-title>{{ coupon.discount }}%</ion-card-title>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          }
+        </ion-row>
+      </ion-grid>
+    </ion-segment-content>
+
+    <ion-segment-content id="meats">
+      <ion-grid>
+        <ion-row>
+          @for(coupon of coupons | filterCouponCategory: 'meats'; track coupon.idProduct){
+            <ion-col size="6">
+              <ion-card class="rounded">
+                <ion-img [src]="coupon.img"/>
+                <ion-card-header class="ion-text-center">
+                  <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
+                  <ion-card-title>{{ coupon.discount }}%</ion-card-title>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          }
+        </ion-row>
+      </ion-grid>
+    </ion-segment-content>
+  </ion-segment-view>
 </ion-content>
