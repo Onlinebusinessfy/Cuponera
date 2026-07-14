@@ -21,58 +21,42 @@
 
 
   <ion-segment-view>
+
     <ion-segment-content id="candies">
-      <ion-grid>
-        <ion-row>
-          @for(coupon of coupons | filterCouponCategory: 'candies'; track coupon.idProduct){
-            <ion-col size="6">
-              <ion-card class="rounded">
-                <ion-img [src]="coupon.img"/>
-                <ion-card-header class="ion-text-center">
-                  <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
-                  <ion-card-title>{{ coupon.discount }}%</ion-card-title>
-                </ion-card-header>
-              </ion-card>
-            </ion-col>
-          }
-        </ion-row>
-      </ion-grid>
+      <ng-container [ngTemplateOutlet]="couponTemplate"
+      [ngTemplateOutletContext]="{category: 'candies'}" />
     </ion-segment-content>
 
     <ion-segment-content id="drinks">
-      <ion-grid>
-        <ion-row>
-          @for(coupon of coupons | filterCouponCategory: 'drinks'; track coupon.idProduct){
-            <ion-col size="6">
-              <ion-card class="rounded">
-                <ion-img [src]="coupon.img"/>
-                <ion-card-header class="ion-text-center">
-                  <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
-                  <ion-card-title>{{ coupon.discount }}%</ion-card-title>
-                </ion-card-header>
-              </ion-card>
-            </ion-col>
-          }
-        </ion-row>
-      </ion-grid>
+      <ng-container [ngTemplateOutlet]="couponTemplate"
+      [ngTemplateOutletContext]="{category: 'drinks'}" />
     </ion-segment-content>
 
     <ion-segment-content id="meats">
-      <ion-grid>
-        <ion-row>
-          @for(coupon of coupons | filterCouponCategory: 'meats'; track coupon.idProduct){
-            <ion-col size="6">
-              <ion-card class="rounded">
-                <ion-img [src]="coupon.img"/>
-                <ion-card-header class="ion-text-center">
-                  <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
-                  <ion-card-title>{{ coupon.discount }}%</ion-card-title>
-                </ion-card-header>
-              </ion-card>
-            </ion-col>
-          }
-        </ion-row>
-      </ion-grid>
+      <ng-container [ngTemplateOutlet]="couponTemplate"
+      [ngTemplateOutletContext]="{category: 'meats'}" />
     </ion-segment-content>
+
   </ion-segment-view>
+
+  <ng-template #couponTemplate let-categoria="category">
+    <ion-grid>
+      <ion-row>
+        @for(coupon of coupons | filterCouponCategory: categoria; track coupon.idProduct){
+          <ion-col size="6">
+            <ion-card class="rounded"
+            [color]="coupon.active ? 'secondary':'light'"
+            (click)="changeActive(coupon)">
+              <ion-img [src]="coupon.img"/>
+              <ion-card-header class="ion-text-center">
+                <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
+                <ion-card-title>{{ coupon.discount }}%</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+
 </ion-content>
