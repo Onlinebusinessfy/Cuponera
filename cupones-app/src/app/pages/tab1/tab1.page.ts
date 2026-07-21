@@ -1,30 +1,40 @@
 import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, IonLabel, IonGrid, IonCardTitle, IonCardSubtitle, IonCardHeader, IonImg, IonRow, IonCol, IonCard} from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, IonLabel, IonGrid, IonCardTitle, IonCardSubtitle, IonCardHeader, IonImg, IonRow, IonCol, IonCard, IonItem, IonIcon } from '@ionic/angular/standalone';
 import { Coupon } from 'src/app/models/coupon.model';
 import { CouponService } from 'src/app/services/coupon.service';
 import { FilterCouponCategoryPipe } from 'src/app/pipes/filter-coupon-category-pipe';
 import { JsonPipe, NgTemplateOutlet } from '@angular/common';
+import { addIcons } from 'ionicons';
+import { cameraOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, 
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView,
     IonLabel, FilterCouponCategoryPipe, JsonPipe, IonGrid, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg, IonRow, IonCol, IonCard,
-    NgTemplateOutlet],
+    NgTemplateOutlet, IonItem, IonIcon],
 })
 export class Tab1Page {
   private couponService: CouponService = inject(CouponService);
 
-  coupons:Coupon[] = [];
+  coupons: Coupon[] = [];
+
+  constructor() {
+    addIcons({ cameraOutline });
+  }
 
   async ionViewWillEnter() {
     this.coupons = await this.couponService.getCoupons();
     console.log('Coupons:', this.coupons);
   }
 
-  changeActive(coupon: Coupon){
+  changeActive(coupon: Coupon) {
     coupon.active = !coupon.active;
     this.couponService.saveCoupons(this.coupons);
+  }
+
+  startCamera() {
+
   }
 }

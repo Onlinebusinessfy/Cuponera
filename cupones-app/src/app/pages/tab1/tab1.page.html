@@ -1,8 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+    <ion-title class="ion-text-center">
       Mis cupones
     </ion-title>
+
+    <ion-item slot="end" lines="none" color="transparent" (click)="startCamera()">
+      <ion-icon name="camera-outline" />
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -23,18 +27,15 @@
   <ion-segment-view>
 
     <ion-segment-content id="candies">
-      <ng-container [ngTemplateOutlet]="couponTemplate"
-      [ngTemplateOutletContext]="{category: 'candies'}" />
+      <ng-container [ngTemplateOutlet]="couponTemplate" [ngTemplateOutletContext]="{category: 'candies'}" />
     </ion-segment-content>
 
     <ion-segment-content id="drinks">
-      <ng-container [ngTemplateOutlet]="couponTemplate"
-      [ngTemplateOutletContext]="{category: 'drinks'}" />
+      <ng-container [ngTemplateOutlet]="couponTemplate" [ngTemplateOutletContext]="{category: 'drinks'}" />
     </ion-segment-content>
 
     <ion-segment-content id="meats">
-      <ng-container [ngTemplateOutlet]="couponTemplate"
-      [ngTemplateOutletContext]="{category: 'meats'}" />
+      <ng-container [ngTemplateOutlet]="couponTemplate" [ngTemplateOutletContext]="{category: 'meats'}" />
     </ion-segment-content>
 
   </ion-segment-view>
@@ -43,17 +44,15 @@
     <ion-grid>
       <ion-row>
         @for(coupon of coupons | filterCouponCategory: categoria; track coupon.idProduct){
-          <ion-col size="6">
-            <ion-card class="rounded"
-            [color]="coupon.active ? 'secondary':'light'"
-            (click)="changeActive(coupon)">
-              <ion-img [src]="coupon.img"/>
-              <ion-card-header class="ion-text-center">
-                <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
-                <ion-card-title>{{ coupon.discount }}%</ion-card-title>
-              </ion-card-header>
-            </ion-card>
-          </ion-col>
+        <ion-col size="6">
+          <ion-card class="rounded" [color]="coupon.active ? 'secondary':'light'" (click)="changeActive(coupon)">
+            <ion-img [src]="coupon.img" />
+            <ion-card-header class="ion-text-center">
+              <ion-card-subtitle>{{ coupon.name }}</ion-card-subtitle>
+              <ion-card-title>{{ coupon.discount }}%</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
         }
       </ion-row>
     </ion-grid>
