@@ -1,23 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Cupon QR
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <ion-grid class="ion-text-center h-100">
     <ion-row class="ion-align-items-center h-100">
       <ion-col>
-        @if(QRCode){
-        <qrcode [qrdata]="QRCode" [width]="256" [errorCorrectionLevel]="'M'" [elementType]="'svg'"></qrcode>
-        }@else{
-        <ion-text>No hay cupones activos</ion-text>
+        @if(QRCode && QRCode.length > 0) {
+          <div>
+            <canvas #qrCanvas></canvas>
+            <ion-text>
+              <p><strong>ID Cupon:</strong> {{ QRCode }}</p>
+              <p><small>Escanea este codigo para canjear tu cupon</small></p>
+            </ion-text>
+          </div>
+        } @else {
+          <ion-text>
+            <h2>No hay cupones activos</h2>
+            <p>Activa un cupon en la pestana anterior</p>
+          </ion-text>
         }
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
