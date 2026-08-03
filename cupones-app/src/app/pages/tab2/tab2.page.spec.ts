@@ -15,4 +15,22 @@ describe('Tab2Page', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should build a QR payload from the active coupons', async () => {
+    component.activeCoupons = [
+      {
+        idProduct: 1,
+        name: 'Galletas',
+        category: 'candies',
+        discount: 10,
+        img: 'assets/img/galletas.jpg',
+        active: true,
+      } as any,
+    ];
+
+    const payload = component.buildQrPayload();
+
+    expect(payload).toContain('"idProduct":1');
+    expect(payload).toContain('"name":"Galletas"');
+  });
 });

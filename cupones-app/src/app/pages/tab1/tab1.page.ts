@@ -10,7 +10,7 @@ import { JsonPipe, NgTemplateOutlet } from '@angular/common';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, 
-    IonLabel, FilterCouponCategoryPipe, JsonPipe, IonGrid, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg, IonRow, IonCol, IonCard,
+    IonLabel, FilterCouponCategoryPipe, IonGrid, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg, IonRow, IonCol, IonCard,
     NgTemplateOutlet],
 })
 export class Tab1Page {
