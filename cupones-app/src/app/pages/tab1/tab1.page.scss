@@ -1,3 +1,22 @@
 .rounded{
     border-radius: 50%;
 }
+
+.scanner-button {
+    --background: transparent;
+    --background-hover: rgba(255, 255, 255, 0.16);
+    --background-activated: rgba(255, 255, 255, 0.18);
+    --background-focused: rgba(255, 255, 255, 0.16);
+    --color: #ffffff;
+    --color-activated: #ffffff;
+    --color-focused: #ffffff;
+    --color-hover: #ffffff;
+    --border-radius: 999px;
+    width: 42px;
+    height: 42px;
+}
+
+.scanner-button ion-icon {
+    color: #ffffff !important;
+    font-size: 22px;
+}
