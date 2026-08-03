@@ -3,6 +3,12 @@
     <ion-title>
       Mis cupones
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button class="scanner-button" fill="clear" (click)="startScan()" aria-label="Escanear QR">
+        <ion-icon name="scan-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

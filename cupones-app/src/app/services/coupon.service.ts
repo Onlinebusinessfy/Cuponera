@@ -37,14 +37,26 @@ export class CouponService {
     return coupons;
   }
 
-  saveCoupons(coupons: Coupon[]){
+  syncScannedCoupons(coupons: Coupon[], scannedPayload: { coupons?: Array<{ idProduct: number }> }): Coupon[] {
+    const scannedIds = new Set(
+      (scannedPayload.coupons ?? []).map((coupon) => Number(coupon.idProduct))
+    );
+
+    return coupons.map((coupon) => {
+      const syncedCoupon = new Coupon(coupon.toCouponData());
+      syncedCoupon.active = scannedIds.has(coupon.idProduct);
+      return syncedCoupon;
+    });
+  }
+
+  async saveCoupons(coupons: Coupon[]){
     const couponsData: ICouponData[] = coupons
     .map( (coupon:Coupon) => coupon.toCouponData());
 
-    Preferences.set({
+    return Preferences.set({
       key:this.DDR_KEY,
       value: JSON.stringify(couponsData)
-    })
+    });
   }
 
   async recoverCoupons(){
